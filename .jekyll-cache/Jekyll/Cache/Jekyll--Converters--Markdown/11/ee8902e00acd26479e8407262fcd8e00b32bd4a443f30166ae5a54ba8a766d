@@ -1,0 +1,41 @@
+I"<p>Assuming you have already bought a custom domain (example.net) and a <a href="https://pages.github.com/">Github Page</a> set up (example.github.io):</p>
+
+<h1 id="create-a-cname-file">Create a CNAME file</h1>
+<p>Create a file name <code class="highlighter-rouge">CNAME</code> in the project’s root folder with the custom domain <code class="highlighter-rouge">example.com</code> inside.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Outputs example.net to a file named CNAME</span>
+<span class="nb">echo </span>example.net <span class="o">&gt;</span> CNAME
+</code></pre></div></div>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--geiyWk08--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/lpdd166ohw5e2eyd36wt.png">Alt Text</a></p>
+
+<p>You may need to configure your build command to also copy CNAME to the build folder, for example with a package.json file with React:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react-scripts start"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react-scripts build &amp;&amp; cp CNAME build/CNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react-scripts test"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"eject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react-scripts eject"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h1 id="configure-your-domain">Configure your domain</h1>
+<p>At your domain provider (the place you bought the domain - which I recommend <porkbun.com>), find the configuration for custom host/resource records and set:</porkbun.com></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Type</span><span class="p">:</span> <span class="nx">A</span>
+<span class="nx">Host</span><span class="p">:</span> <span class="p">@</span>
+<span class="nx">Answer</span><span class="o">/</span><span class="nx">Data</span><span class="o">/</span><span class="nx">Value</span><span class="p">:</span> <span class="mf">185.199</span><span class="p">.</span><span class="mf">108.153</span>
+<span class="nx">TTL</span><span class="p">:</span> <span class="mi">30</span><span class="nx">min</span> <span class="p">(</span><span class="nx">or</span> <span class="nx">any</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Do this for all 4 github page ip addresses: 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153</p>
+
+<p>You’ll also need to add this one:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Type</span><span class="p">:</span> <span class="nx">CNAME</span>
+<span class="nx">Host</span><span class="p">:</span> <span class="nx">www</span>
+<span class="nx">Answer</span><span class="o">/</span><span class="nx">Data</span><span class="o">/</span><span class="nx">Value</span><span class="p">:</span> <span class="nx">example</span><span class="p">.</span><span class="nx">github</span><span class="p">.</span><span class="nx">io</span>
+<span class="nx">TTL</span><span class="p">:</span> <span class="mi">30</span><span class="nx">min</span> <span class="p">(</span><span class="nx">or</span> <span class="nx">any</span><span class="p">)</span>
+</code></pre></div></div>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--y0hVirnw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/oewpiajem5lvoft1s7rf.png">Alt Text</a></p>
+
+<h1 id="configure-repository">Configure repository</h1>
+<p>At Github, go to the repository settings and add your custom domain in the Github Pages section.
+It might take up to 24h to reflect these and/or HTTPS changes</p>
+
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--c-ZYnmVF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/dy4hvytp1i41ixhwk84h.png">Alt Text</a></p>
+:ET
